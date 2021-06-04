@@ -31,6 +31,10 @@
     <many-to-one name="departmentOfBirth" title="Department of birth" ref="com.axelor.apps.base.db.Department" help="For foreign-born employees, please enter the code 99"/>
     <many-to-one name="countryOfBirth" title="Country of birth" ref="com.axelor.apps.base.db.Country"/>
     <string name="sexSelect" title="Sex" selection="employee.hr.sex.select"/>
+     <string name="rank" title="Rank"/>
+    <string name="rung"  title="Rung" />
+    <string  name="ladder"  title="Ladder"/>
+    <string name="indice"  title="Index"/>
       <string name="fixedProPhone" title="Work fixed phone"/>
       <string name="mobileProPhone" title="Work mobile phone"/>
       <string name="phoneAtCustomer" title="Phone at the customer"/>

@@ -50,60 +50,56 @@
             <field name="name" title="Name" onChange="action-partner-record-simple-and-full-name,action-employee-contact-method-set-social-network-url" colSpan="5"/>
 
             <field name="emailAddress" canNew="true" form-view="email-address-simple-form" canSelect="false"/>
-            <field name="webSite" pattern="^(?:http(?:s)?://)?\S+(?:\.\S+)+$" placeholder="http://www.url.com"/>
 
-            <field name="fixedPhone" onChange="action-partner-method-normalize-fixedPhone" colSpan="4" pattern="^\+?([\s()-.]*\d){7,}$" placeholder="+33100000000"/>
-            <field name="mobilePhone" onChange="action-partner-method-normalize-mobilePhone" colSpan="4" pattern="^\+?([\s()-.]*\d){7,}$" placeholder="+33600000000"/>
-            <field name="fax" onChange="action-partner-method-normalize-fax" colSpan="4" pattern="^\+?([\s()-.]*\d){7,}$" placeholder="+33000000000"/>
+            <field name="fixedPhone" onChange="action-partner-method-normalize-fixedPhone" colSpan="4" pattern="^\+?([\s()-.]*\d){7,}$" placeholder="+21200000000"/>
+            <field name="mobilePhone" onChange="action-partner-method-normalize-mobilePhone" colSpan="4" pattern="^\+?([\s()-.]*\d){7,}$" placeholder="+21200000000"/>
           </panel>
         </editor>
       </field>
     </panel>
 
     <!-- Basic info -->
-    <panel name="phoneProSBSPanel" title="Work phones" showIf="stepByStepSelect == 1">
-      <field name="fixedProPhone" onChange="action-employee-method-normalize-fixedProPhone" colSpan="4" pattern="^\+?([\s()-.]*\d){7,}$" placeholder="+33100000000"/>
-      <field name="mobileProPhone" onChange="action-employee-method-normalize-mobileProPhone" colSpan="4" pattern="^\+?([\s()-.]*\d){7,}$" placeholder="+33600000000"/>
-      <field name="phoneAtCustomer" onChange="action-employee-method-normalize-phoneAtCustomer" colSpan="4" pattern="^\+?([\s()-.]*\d){7,}$" placeholder="+33100000000"/>
-    </panel>
+  <panel name="phoneProSBSPanel" title="Work phones" showIf="stepByStepSelect == 1">
+    <field name="birthDate" colSpan="4" onChange="action-employee-method-normalize-birthDate" pattern="^\+?([\s()-.]*\d){7,}$"/>
+    <field name="cityOfBirth" colSpan="4" onSelect="action-employee-attrs-city-of-birth-on-select"/>
+    <field name="maritalStatus" colSpan="4" onChange="action-employee-method-normalize-maritalSatus" pattern="^\+?([\s()-.]*\d){7,}$"/>
+  </panel>
 
-    <panel name="personalInfoSBSPanel" title="Personal information" showIf="stepByStepSelect == 1">
-      <field name="birthDate" colSpan="4"/>
-      <field name="maritalStatus" colSpan="4"/>
-      <field name="sexSelect" colSpan="4"/>
-      <field name="countryOfBirth" colSpan="4" onChange="action-employee-attrs-country-of-birth-on-change"/>
-      <field name="departmentOfBirth" colSpan="4" grid-view="hr-department-grid" onChange="action-employee-attrs-department-of-birth-on-change" onSelect="action-employee-attrs-department-of-birth-on-select"/>
-      <field name="cityOfBirth" colSpan="4" onSelect="action-employee-attrs-city-of-birth-on-select"/>
-      <field name="citizenship" colSpan="4"/>
-      <field name="maritalName" colSpan="4"/>
-      <field name="maidenName" colSpan="4" hideIf="sexSelect!='F'"/>
-      <field name="socialSecurityNumber" colSpan="4" max="15" min="12"/>
-    </panel>
+     <panel name="personalInfoSBSPanel" title="Personal information" showIf="stepByStepSelect == 1">
+    <field name="rank" colSpan="3"  title="Rank"/>
+    <field name="rung" colSpan="3" title="Rung" onChange="action-employee-method-normalize-birthDate" pattern="^\+?([\s()-.]*\d){7,}$"/>
+    <field name="ladder" colSpan="3" title="Ladder"/>
+    <field name="indice" colSpan="3" title="Index"/>
+  </panel>
 
-    <panel name="emergencyContactSBSPanel" title="Contact in case of emergency" showIf="stepByStepSelect == 1">
-      <field name="emergencyContact" colSpan="4"/>
-      <field name="emergencyNumber" onChange="action-employee-method-normalize-emergencyNumber" colSpan="4" pattern="^\+?([\s()-.]*\d){7,}$" placeholder="+33100000000"/>
-      <field name="emergencyContactRelationship" colSpan="4" title="Relationship"/>
-    </panel>
+  <panel name="personalInfoSBSPanel" title="Skills Part" showIf="stepByStepSelect == 1">
+    <field name="diploma" colSpan="6" title="Diploma"/>
+    <field name="diplomaObtainingDate" title="Diploma Obtaining Date" colSpan="6" onChange="action-employee-method-normalize-diplomaObtainingDate" pattern="^\+?([\s()-.]*\d){7,}$"/>
+    <field name="traineeshipAndExperiences" title="Traineeship And Experiences" colSpan="4"/>
+    <field name="startOfTheInternship" title="Start Of The Internship" colSpan="4" onChange="action-employee-method-normalize-startOfTheInternship" pattern="^\+?([\s()-.]*\d){7,}$"/>
+    <field name="endOfTheInternship" title="End Of The Internship" colSpan="4" onChange="action-employee-method-normalize-endOfTheInternship" pattern="^\+?([\s()-.]*\d){7,}$"/>
+    <field name="training" title="Training" colSpan="4"/>
+    <field name="startofTrainig" title="Start Of Training" colSpan="4" onChange="action-employee-method-normalize-startofTrainig" pattern="^\+?([\s()-.]*\d){7,}$"/>
+    <field name="endOfTraining" title="End Of Training" colSpan="4" onChange="action-employee-method-normalize-endOfTraining" pattern="^\+?([\s()-.]*\d){7,}$"/>
+  </panel>
 
-    <panel name="rhInfoSBSPanel" title="HR information" showIf="stepByStepSelect == 1">
-      <panel colSpan="12">
-        <field name="managerUser" canEdit="false" canNew="false" canView="false" colSpan="4" form-view="user-form" grid-view="user-grid"/>
-        <field name="exportCode" colSpan="4"/>
-        <field name="bankDetails" colSpan="4" form-view="bank-details-form" grid-view="bank-details-grid" if="__config__.app.getApp('base').getManageMultiBanks()" if-module="axelor-cash-management" widget="SuggestBox" onSelect="action-employee-attrs-bank-details-on-select"/>
-      </panel>
+    
+  <panel name="personalInfoSBSPanel" title="Marriage and birth" showIf="stepByStepSelect == 1">
+    <field name="maritalName" title="Marital Name" colSpan="4"/>
+    <field name="mobilePhone" title="Mobile Phone" onChange="action-partner-method-normalize-mobilePhone" colSpan="4" pattern="^\+?([\s()-.]*\d){7,}$" placeholder="+21200000000"/>
+    <field name="marriageDate" title="Marriage Date" colSpan="4"/>
+    <field name="numberOfChildren" title="Number Of Children" colSpan="4"/>
+    <field name="birthDateOfChildren" title="Birth Date Of Children" colSpan="4"/>
+    <field name="ChildrenInsurance" colSpan="4" title="Children Insurance" />
+    <panel name="personalInfoSBSPanel" title="Presence of andicape situation for children" colSpan="12">
+            <field name="Oui" title="Oui" colSpan="4" widget="InlineCheckbox"/>
+            <field name="Non" title="Non" colSpan="4" widget="InlineCheckbox"/>
+            <field name="typeOfAndicape" colSpan="4"/>
+            
+   </panel>
+  </panel>
 
-      <panel colSpan="12">
-        <field name="weeklyPlanning" title="Weekly planning" canNew="true" colSpan="4" form-view="weekly-planning-form" grid-view="weekly-planning-grid"/>
-        <field name="publicHolidayEventsPlanning" canEdit="false" colSpan="4" form-view="events-planning-form" grid-view="events-planning-grid"/>
-        <field name="imposedDayEventsPlanning" canEdit="false" colSpan="4" form-view="events-planning-form" grid-view="events-planning-grid"/>
-      </panel>
-
-      <panel colSpan="12">
-        <field name="hrManager" colSpan="4" widget="InlineCheckbox"/>
-        <field name="external" colSpan="4" widget="InlineCheckbox"/>
-      </panel>
-    </panel>
+   
     <!-- END OF Basic info -->
 
     <!-- Employment contract -->
